@@ -12,9 +12,9 @@
     </template>
     <template slot="navbar-menu">
       <li class="nav-item">
-        <router-link class="nav-link btn btn-primary" to="/account/signin" style="font-weight: 600;padding: 8px 20px;">
-          <p>Sign In</p>
-        </router-link>
+        <a class="nav-link btn btn-primary" :href="'tel:'+$root.$data.call_now" style="font-weight: 600;padding: 8px 20px;">
+          <p>Call Now</p>
+        </a>
       </li>
     </template>
   </navbar>
