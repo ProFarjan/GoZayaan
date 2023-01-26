@@ -95,9 +95,9 @@
     <div class="section section-basic" style="margin: 3rem 0;">
       <div class="container" id="hot_deal_slide">
 
-        <div class="promotion-navbar">
-          <h4>Hot Deals</h4>
-          <div class="promotion-tab">
+        <div class="promotion-navbar row">
+          <h4 class="col-md-6">Hot Deals</h4>
+          <div class="promotion-tab col-md-6">
             <ul>
               <li class="active">
                 All
@@ -495,7 +495,7 @@ export default {
   }
 
   .promotion-navbar h4 {
-    margin: 0;
+    margin: 0 0 1rem 0;
     font-size: 2rem;
     line-height: 22px;
     font-weight: 600;
@@ -563,6 +563,10 @@ export default {
     height: 100%;
     object-fit: cover;
     border-radius: 15px;
+  }
+
+  .img-fluid {
+    min-height: 140px !important;
   }
 
   @media only screen and (max-width: 991px) {

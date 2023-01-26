@@ -5,15 +5,12 @@
     style="background-color: #1c3c6b !important;color: white !important;"
   >
     <div class="container">
-      <nav>
-        <ul>
-          <li>
-            <b-img :src="$root.$data.app_logo_white" rounded :alt="$root.$data.app_name"></b-img>
-          </li>
-        </ul>
-      </nav>
-      <div class="copyright">
-        &copy; Copyright GoZayaan Ltd.
+      <hr class="separator" />
+      <div class="row footer-copyright align-items-center">
+        <div class="col-md-6">
+          <b-img :src="$root.$data.app_logo_white" rounded :alt="$root.$data.app_name"></b-img>
+        </div>
+        <div class="col-md-6"><p class="text-small-regular text-right">© Copyright GoZayaan Ltd.</p></div>
       </div>
     </div>
   </footer>
@@ -31,4 +28,8 @@ export default {
   }
 };
 </script>
-<style></style>
+<style>
+hr {
+  border-top: 1px solid rgb(255 255 255) !important;
+}
+</style>

@@ -17,4 +17,7 @@ export default {};
     border-color: #1c3c6b !important;
     background-color: #1c3c6b !important;
   }
+  a:hover, a:focus {
+    text-decoration: none;
+  }
 </style>
