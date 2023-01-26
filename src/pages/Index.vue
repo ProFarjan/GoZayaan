@@ -27,7 +27,7 @@
               </b-form-radio-group>
             </div>
 
-            <b-card-footer id="searchbar">
+            <b-card-footer id="searchbar" class="text-left">
               <div class="flight-search bar">
                 <div class="box location from">
                   <span class="label">From</span>
@@ -74,10 +74,14 @@
                   </span>
                 </div>
               </div>
+              <div class="search-btn-container">
+                <button type="button" class="search-btn">
+                  Search
+                </button>
+              </div>
             </b-card-footer>
 
           </b-card>
-
         </div>
       </div>
     </div>
@@ -196,7 +200,7 @@ export default {
     position: relative;
   }
   #searchbar .bar div.box .label {
-    font-size: .8571428571rem;
+    font-size: .75rem;
     line-height: 14px;
     font-weight: 400;
     display: block;
@@ -207,14 +211,19 @@ export default {
     margin-bottom: 4px;
   }
   #searchbar .bar div.box .value {
-    font-size: 1.2857142857rem;
+    font-size: 1.1rem;
     line-height: 24px;
     font-weight: 700;
     color: #1c3c6b;
   }
   #searchbar .bar div.box .value+.sub-value {
     margin-top: 0;
-    font-size: 12px;
+    font-size: 11px;
+  }
+  #searchbar .bar div.box .value span {
+    font-size: 0.85rem;
+    line-height: 20px;
+    font-weight: 400;
   }
   #searchbar .bar div.box .sub-value {
     line-height: 14px;
@@ -243,5 +252,48 @@ export default {
     left: -5px;
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
+  }
+
+  #searchbar div.date {
+    flex-basis: 15%;
+  }
+  #searchbar div.date.depart {
+    border-radius: 10px 0 0 10px;
+  }
+  #searchbar div.date {
+    flex-basis: 15%;
+  }
+  #searchbar div.date.return {
+    border-radius: 0 10px 10px 0;
+    border-left: 0;
+  }
+  #searchbar .bar div.box .sub-value.inline-style {
+    white-space: normal;
+  }
+  #searchbar div.traveler {
+    flex-basis: calc(20% - 10px);
+    margin-left: 10px;
+  }
+
+  #searchbar .search-btn-container button.search-btn {
+    border: 0;
+    background-color: #fccd03;
+    color: #1c3c6b;
+    border-radius: 10px;
+    padding: 15px 50px;
+    font-size: 18px;
+    font-weight: 700;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    -webkit-transform: translate(-50%,50%);
+    transform: translate(-50%,50%);
+    outline: none;
+  }
+
+  @media only screen and (max-width: 991px) {
+    #searchbar .bar {
+      flex-wrap: wrap;
+    }
   }
 </style>

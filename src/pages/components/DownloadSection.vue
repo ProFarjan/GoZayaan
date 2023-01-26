@@ -2,7 +2,7 @@
   <div
     class="section section-download"
     id="#download-section"
-    data-background-color="black"
+    style="background-color: #1c3c6b !important;color: white !important;"
   >
     <div class="container">
       <div class="row justify-content-md-center">

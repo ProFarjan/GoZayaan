@@ -2,40 +2,18 @@
   <footer
     class="footer"
     :class="{ [`footer-${type}`]: type }"
-    :data-background-color="backgroundColor"
+    style="background-color: #1c3c6b !important;color: white !important;"
   >
     <div class="container">
       <nav>
         <ul>
           <li>
-            <a href="https://www.creative-tim.com">
-              Creative Tim
-            </a>
-          </li>
-          <li>
-            <a href="https:///presentation.creative-tim.com">
-              About Us
-            </a>
-          </li>
-          <li>
-            <a href="https:///blog.creative-tim.com">
-              Blog
-            </a>
+            <b-img :src="$root.$data.app_logo_white" rounded :alt="$root.$data.app_name"></b-img>
           </li>
         </ul>
       </nav>
       <div class="copyright">
-        &copy; {{ year }}, Designed by
-        <a href="https:///www.invisionapp.com" target="_blank" rel="noopener"
-          >Invision</a
-        >. Coded by
-        <a href="https://binarcode.com" target="_blank" rel="noopener"
-          >BinarCode</a
-        >
-        and
-        <a href="https://www.creative-tim.com" target="_blank" rel="noopener"
-          >Creative Tim</a
-        >.
+        &copy; Copyright GoZayaan Ltd.
       </div>
     </div>
   </footer>
