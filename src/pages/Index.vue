@@ -316,7 +316,7 @@ export default {
     height: 40px;
     width: 40px;
     border-radius: 50%;
-    background-image: url(http://localhost:8080/img/swap.svg);
+    background-image: url(https://gozayaan.farjan.dev/img/swap.svg);
     background-size: 40px;
     background-position: 50%;
     background-repeat: no-repeat;

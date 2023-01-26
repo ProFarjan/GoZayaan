@@ -9,14 +9,26 @@
         <div class="col-md-4">
           <h6>Discover</h6>
           <ul class="footer-links">
-            <li class="footer-link"><a href="/" aria-current="page" class="active-exact active">Home</a></li>
-            <li class="footer-link"><a href="/terms" class="">Terms</a></li>
-            <li class="footer-link"><a href="/talent" class="">Talent &amp; Culture</a></li>
+            <li class="footer-link">
+              <router-link class="active-exact" to="/">Home</router-link>
+            </li>
+            <li class="footer-link">
+              <router-link to="/terms">Terms</router-link>
+            </li>
+            <li class="footer-link">
+              <router-link to="/talent">Talent &amp; Culture</router-link>
+            </li>
           </ul>
           <ul class="footer-links">
-            <li class="footer-link"><a href="/refund-policy" class="">Refund Policy</a></li>
-            <li class="footer-link"><a href="/emi-policy" class="">EMI Policy</a></li>
-            <li class="footer-link"><a href="/privacy-policy" class="">Privacy Policy</a></li>
+            <li class="footer-link">
+              <router-link to="/refund-policy">Refund Policy</router-link>
+            </li>
+            <li class="footer-link">
+              <router-link to="/emi-policy">EMI Policy</router-link>
+            </li>
+            <li class="footer-link">
+              <router-link to="/privacy-policy">Privacy Policy</router-link>
+            </li>
           </ul>
         </div>
         <div class="mb-2 col-md-4">
@@ -28,28 +40,28 @@
         <div class="col-md-4">
           <h6>Contact</h6>
           <ul class="footer-contact">
-            <li class="footer-link"><a href="mailto:info@gozayaan.com">info@gozayaan.com</a></li>
+            <li class="footer-link"><a :href="'mailto:'+$root.$data.app_mail">{{ $root.$data.app_mail }}</a></li>
             <li class="footer-link">
-              <a href="tel:+447475842121">
-                +44 7475842121
+              <a :href="'tel:'+$root.$data.call_now">
+                {{ $root.$data.call_now }}
               </a>
             </li>
           </ul>
 
           <ul class="social-icons">
             <li class="social-icon">
-              <a href="" target="_blank">
-                <b-icon icon="facebook"></b-icon>
+              <a :href="$root.$data.fb_link" target="_blank">
+                <b-icon class="icon" icon="facebook"></b-icon>
               </a>
             </li>
             <li class="social-icon">
-              <a href="" target="_blank">
-                <b-icon icon="youtube"></b-icon>
+              <a :href="$root.$data.youtube_link" target="_blank">
+                <b-icon class="icon" icon="youtube"></b-icon>
               </a>
             </li>
             <li class="social-icon">
-              <a href="" target="_blank">
-                <b-icon icon="instagram"></b-icon>
+              <a :href="$root.$data.instagram_link" target="_blank">
+                <b-icon class="icon" icon="instagram"></b-icon>
               </a>
             </li>
           </ul>
@@ -99,5 +111,28 @@
   .text-small-regular {
     font-weight: 300;
     font-size: 14px;
+  }
+  .section-download .social-icons {
+    padding-left: 0;
+  }
+  .section-download .social-icons .social-icon {
+    display: inline-block;
+    text-align: center;
+  }
+  .section-download .social-icons .social-icon a {
+    color: #fff;
+    font-size: 16px;
+    font-size: 1.1428571429rem;
+    line-height: 40px;
+    font-weight: 400;
+  }
+  .section-download .social-icons .social-icon a .icon {
+    background: hsla(0,0%,100%,.2);
+    margin-right: 8px;
+    border-radius: 33px;
+    width: 40px;
+    line-height: 40px;
+    min-height: 38px;
+    padding: 11px;
   }
 </style>
