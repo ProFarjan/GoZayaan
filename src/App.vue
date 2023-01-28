@@ -61,7 +61,30 @@ export default {};
     overflow-y: auto;
     border-top: 1px solid #dbdde0;
   }
+
   .multiselect__content{
     list-style-type: none;
+  }
+  .mx-datepicker {
+    width: 100% !important;
+    display: grid !important;
+    position: absolute;
+    bottom: -10px;
+    left: 7.6vw;
+  }
+  .mx-datepicker-range {
+    left: 24.5vw !important;
+  }
+  .mx-datepicker .mx-input-wrapper {
+    position: absolute;
+  }
+  .mx-datepicker input {
+    padding: 0;
+    margin: 0;
+    height: 0;
+    border: 0;
+  }
+  .mx-input-wrapper i {
+    font-size: 0px;
   }
 </style>
