@@ -396,7 +396,7 @@ export default {
   top: 50%;
   right: 0;
   transform: translate(-50%,-50%) rotate(45deg);
-  background-image: url(http://localhost:8080/img/plus-circle-solid.svg);
+  background-image: url(https://gozayaan.farjan.dev/img/plus-circle-solid.svg);
   background-repeat: no-repeat;
   background-size: 20px;
   background-position: 50%;
@@ -412,7 +412,7 @@ export default {
   height: 40px;
   width: 40px;
   border-radius: 50%;
-  background-image: url(http://localhost:8080/img/swap.svg);
+  background-image: url(https://gozayaan.farjan.dev/img/swap.svg);
   background-size: 40px;
   background-position: 50%;
   background-repeat: no-repeat;
