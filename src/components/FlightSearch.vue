@@ -23,18 +23,20 @@
         <b-card-footer id="searchbar" class="text-left">
           <div class="flight-search bar">
 
-            <div class="box location from" :class="isActiveFrom" @click="open_from">
+            <div class="box location from" :class="isActiveFrom" @click="open_from" v-click-outside="close_from">
               <span class="label">From</span>
               <div class="value">{{ from_value.city }}</div>
               <span class="sub-value">
                 {{ from_value.port_short_name }}, {{ from_value.port_name }}
               </span>
               <multiselect
+                  v-if="isActiveFrom"
                   ref="openfromel"
                   v-model="from_value"
                   :options="from_options"
                   :customLabel="customLabel"
                   track-by="port_short_name"
+                  :hideSelected="true"
                   placeholder="Type to search"
                   @select="select_from"
                   @close="close_from">
@@ -49,7 +51,7 @@
                 </template>
               </multiselect>
             </div>
-            <div class="box location to has-swapper" :class="isActiveTo" @click="open_to">
+            <div class="box location to has-swapper" :class="isActiveTo" @click="open_to" v-click-outside="close_to">
               <span class="swapper"></span>
               <span class="label">To</span>
               <div class="value">
@@ -59,9 +61,11 @@
                 {{ to_value.port_short_name }}, {{ to_value.port_name }}
               </span>
               <multiselect
+                  v-if="isActiveTo"
                   ref="opentoel"
                   v-model="to_value"
                   :options="to_options"
+                  :hideSelected="true"
                   :customLabel="customLabel"
                   track-by="port_short_name"
                   placeholder="Type to search"
@@ -115,14 +119,15 @@
               <span class="remove-return-date" v-if="return_date.length" @click="reset_return_journey"></span>
             </div>
 
-            <div class="box traveler">
+            <div class="box traveler" :class="isActivetraveler" @click="open_traveler" v-click-outside="closeGuestPicker">
               <span class="label">Traveler, Class</span>
               <div class="value">1
                 Traveler
               </div>
               <span class="sub-value">
-                    Economy
-                  </span>
+                Economy
+              </span>
+              <guest-picker v-if="isActivetraveler"></guest-picker>
             </div>
           </div>
 
@@ -142,9 +147,11 @@
 import Multiselect from 'vue-multiselect';
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
+import GuestPicker from "@/components/GuestPicker.vue";
 export default {
   name: "FlightSearch",
   components: {
+    GuestPicker,
     Multiselect,
     DatePicker
   },
@@ -182,10 +189,11 @@ export default {
         { text: 'One Way', value: 'one_way' },
         { text: 'Round Way', value: 'round_way' }
       ],
-      isActiveFrom: "",
-      isActiveTo: "",
-      isActiveJourney: "",
-      isActiveJourneyReturn: "",
+      isActiveFrom: '',
+      isActiveTo: '',
+      isActiveJourney: '',
+      isActiveJourneyReturn: '',
+      isActivetraveler: '',
       journey_to: new Date(),
       return_date: []
     }
@@ -207,19 +215,27 @@ export default {
       //return `${city} – ${port_name}`
       return ""
     },
+    open_traveler () {
+      this.isActivetraveler = "active"
+    },
+    closeGuestPicker () {
+      if (this.isActivetraveler == 'active') {
+        this.isActivetraveler = ''
+      }
+    },
     open_from () {
-      this.$refs.openfromel.activate()
       this.isActiveFrom = "active"
+      setTimeout(() => this.$refs.openfromel.activate(), 100)
     },
     select_from () {
-      this.$refs.opentoel.activate()
-      this.close_from()
       this.isActiveTo = "active"
+      this.close_from()
+      setTimeout(() => this.$refs.opentoel.activate(), 100)
     },
     open_to () {
-      this.$refs.opentoel.activate()
       this.isActiveTo = "active"
       this.close_from()
+      setTimeout(() => this.$refs.opentoel.activate(), 100)
     },
     select_to () {
       this.$refs.journeyto.openPopup()
