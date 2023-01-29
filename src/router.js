@@ -28,7 +28,7 @@ export default new Router({
       components: { default: Flight_list, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 0 },
-        footer: { backgroundColor: 'black' }
+        footer: { backgroundColor: 'black' },
       }
     },
     {

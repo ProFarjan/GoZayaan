@@ -1,8 +1,8 @@
 <template>
   <div :class="!flightSearch ? 'container' : ''">
-    <div class="content-center brand">
+    <div class="content-center brand" :style="list_el_css.brand">
 
-      <b-card round>
+      <b-card round :style="list_el_css.round">
         <div class="search-type" v-if="!flightSearch">
               <span class="search-type-tab active">
                 <img src="/img/icon-Flight.svg" alt="Flight" width="25" height="18">
@@ -20,7 +20,7 @@
           </b-form-radio-group>
         </div>
 
-        <b-card-footer id="searchbar" class="text-left">
+        <b-card-footer id="searchbar" class="text-left" :style="list_el_css.searchTop">
 
           <div class="flight-search bar">
 
@@ -207,6 +207,12 @@
                 </b-card>
               </div>
             </div>
+
+<!--            <div class="modify_search" v-if="flightSearch">-->
+<!--              <button type="button" class="search-btn" @click="search_flight">-->
+<!--                Modify Search-->
+<!--              </button>-->
+<!--            </div>-->
           </div>
 
           <div class="search-btn-container" v-if="!flightSearch">
@@ -302,6 +308,28 @@ export default {
     },
     total_traveler () {
       return parseInt(this.adult) + parseInt(this.children) + parseInt(this.infant)
+    },
+    list_el_css () {
+      let obj = {
+        brand: {},
+        round: {
+          padding: '2.5rem'
+        },
+        searchTop: {}
+      }
+      if (this.flightSearch) {
+        obj.brand = {
+          padding: '0px'
+        },
+        obj.round = {
+          borderRadius: '0px',
+          boxShadow: '0px 0px 0px 0px rgb(0 0 0 / 20%)'
+        }
+        obj.searchTop = {
+          marginTop: '4px'
+        }
+      }
+      return obj
     }
   },
   watch: {
@@ -455,8 +483,8 @@ export default {
   margin-right: 8px;
 }
 .card-body {
-  min-height: 200px;
-  padding: 3rem;
+  min-height: 120px;
+  padding: 0;
 }
 #btn_flight_radio span {
   color: #1c3c6b;
@@ -725,6 +753,18 @@ export default {
   font-size: 14px;
   font-weight: 700;
   outline: none;
+}
+.modify_search {
+  margin-left: 10px;
+}
+.modify_search button.search-btn{
+  border: 0;
+  background-color: #fccd03;
+  color: #1c3c6b;
+  border-radius: 10px;
+  padding: 15px 50px;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 #guestPicker .card {

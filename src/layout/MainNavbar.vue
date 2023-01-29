@@ -4,6 +4,7 @@
     :transparent="transparent"
     :color-on-scroll="colorOnScroll"
     menu-classes="ml-auto"
+    :class="colorOnScroll==0 ? 'set_style_nav' : ''"
   >
     <template>
       <router-link class="navbar-brand" to="/">
@@ -44,6 +45,9 @@ export default {
 </script>
 
 <style scoped>
+.set_style_nav {
+  box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 15%);
+}
 .my_nav_span {
   font-weight: 600;
   color: #1c3c6b;
