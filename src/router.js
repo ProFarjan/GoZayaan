@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Index from './pages/Index.vue';
-import Landing from './pages/Landing.vue';
+import Flight_list from './pages/flight/list.vue';
 import Login from './pages/Login.vue';
 import Profile from './pages/Profile.vue';
 import MainNavbar from './layout/MainNavbar.vue';
@@ -23,11 +23,11 @@ export default new Router({
       }
     },
     {
-      path: '/landing',
-      name: 'landing',
-      components: { default: Landing, header: MainNavbar, footer: MainFooter },
+      path: '/flight/list',
+      name: 'list',
+      components: { default: Flight_list, header: MainNavbar, footer: MainFooter },
       props: {
-        header: { colorOnScroll: 90 },
+        header: { colorOnScroll: 0 },
         footer: { backgroundColor: 'black' }
       }
     },

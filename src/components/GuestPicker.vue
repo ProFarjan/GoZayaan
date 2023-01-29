@@ -69,6 +69,12 @@
         >
         </b-form-radio-group>
       </div>
+
+      <div class="search-btn-container">
+        <button type="button" class="search-btn">
+          Done
+        </button>
+      </div>
     </b-card>
   </div>
 </template>
@@ -122,106 +128,5 @@ export default {
 </script>
 
 <style scoped>
-#guestPicker {
-  position: absolute;
-  right: 0;
-  width: 150%;
-  margin-top: 1rem;
-  padding: 0px;
-  z-index: 1002;
-}
-#guestPicker .guest_picker_list {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.8rem;
-  border-bottom: 1px solid #ecf3fe;
-}
-#guestPicker .guest_picker_list .label {
-  font-size: .86rem;
-  line-height: 14px;
-  font-weight: 400;
-  display: block;
-  color: #1c3c6b;
-}
-#guestPicker .guest_picker_list .label span{
-  display: block;
-  font-size: .7rem;
-  line-height: 14px;
-  font-weight: 400;
-  color: #728db6 !important;
-}
-#guestPicker .guest_picker_list .input-container{
-  display: flex;align-items: center;
-}
-#guestPicker .guest_picker_list .input-container .adult-count{
-  color: #1c3c6b;
-  min-width: 40px;
-  text-align: center;
-}
-#guestPicker .guest_picker_list .input-container button{
-  appearance: none;
-  background-color: transparent;
-  border: 0;
-  width: auto;
-  height: auto;
-  padding: 0;
-  outline: 0;
-  margin: 0 0.2rem;
-}
-#guestPicker .guest_picker_list .input-container button img{
-  width: 22px;
-  vertical-align: middle;
-  border-style: none;
-}
 
-.children-age {
-  justify-content: flex-start;
-  margin-bottom: 0;
-  display: flex;
-  align-items: center;
-  padding: 0 0.8rem 0.8rem;
-}
-.child-age-wrapper {
-  width: 24%;
-  display: flex;
-  flex-direction: column;
-  margin-right: 4px;
-}
-.child-age-wrapper label {
-  font-size: .76rem;
-  line-height: 14px;
-  font-weight: 300;
-  margin-bottom: 5px;
-  color: #1c3c6b;
-}
-.child-age-wrapper select {
-  padding: 4px 8px;
-  font-size: 12px;
-  height: 1.8rem;
-}
-
-.class_type {
-  padding: 0.8rem;
-}
-.class_type .label {
-  font-size: .86rem;
-  line-height: 14px;
-  font-weight: 400;
-  margin-bottom: 5px;
-  color: #1c3c6b;
-}
-#class-type .page-header span {
-  font-size: 0.74rem;
-}
-
-.card {
-  border-radius: 0.1rem !important;
-  margin-bottom: 0px !important;
-}
-.card-body {
-  padding: 0 !important;
-}
-.active {
-  display: block;
-}
 </style>

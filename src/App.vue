@@ -52,7 +52,7 @@ export default {};
     width: 100%;
     border: 0;
     outline: 0;
-    background-image: url(https://gozayaan.farjan.dev/img/icon-search.svg);
+    background-image: url(http://localhost:8080/img/icon-search.svg);
     background-repeat: no-repeat;
     background-size: 14px;
     background-position: 0;
