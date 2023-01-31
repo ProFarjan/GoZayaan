@@ -92,13 +92,10 @@
               </span>
             </div>
           </div>
-          <button type="button" class="btn selection-btn btn-block btn-secondary btn-sm btn_select">
+          <button type="button" class="btn selection-btn btn-block btn-secondary btn-sm btn_select" @click="confirm_booking">
             Select
           </button>
         </div>
-      </div>
-      <div class="flight-details-wrapper">
-        Under Development...
       </div>
     </div>
   </b-card>
@@ -106,7 +103,14 @@
 
 <script>
 export default {
-  name: "record"
+  name: "record",
+  methods: {
+    confirm_booking () {
+      this.$router.push({
+        path: '/flight/booking'
+      })
+    }
+  }
 }
 </script>
 

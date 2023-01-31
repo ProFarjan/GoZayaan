@@ -73,7 +73,9 @@
 </template>
 
 <script>
-  export default {};
+  export default {
+    name: 'download-section'
+  };
 </script>
 
 <style scoped>
