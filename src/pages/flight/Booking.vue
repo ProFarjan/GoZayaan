@@ -63,8 +63,111 @@
               </b-collapse>
             </b-card>
           </div>
+          <div class="booking-header mt-3">
+            <h4>Enter Traveller Details</h4>
+          </div>
+          <div class="booking-traveller-details">
+            <b-card>
+              <b-card-header>
+                <div class="p-3 m-0" :class="flight_traveller_details ? 'collapsed' : ''" v-b-toggle.collapse-3>
+                  <h6>Passenger Details</h6>
+                </div>
+              </b-card-header>
+              <b-card-body>
+                <b-collapse id="collapse-3" v-model="flight_traveller_details" class="p-3 separator-collapse flight-booking-detail">
+                  <b-form>
+                    <b-row>
+                      <b-col md="6" sm="12" class="mb-2">
+                        <label for="input-first-name">Given Name / First Name:</label>
+                        <b-form-input
+                            id="input-first-name"
+                            v-model="traveller_first_name"
+                            :state="travellerFirstNameState"
+                            aria-describedby="input-first-name-feedback"
+                            placeholder="Enter traveller first name"
+                            trim
+                        ></b-form-input>
+                        <b-form-invalid-feedback id="input-first-name-feedback">
+                          Enter at least 3 letters
+                        </b-form-invalid-feedback>
+                      </b-col>
+                      <b-col md="6" sm="12" class="mb-2">
+                        <label for="input-last-name">Last Name:</label>
+                        <b-form-input
+                            id="input-last-name"
+                            v-model="traveller_last_name"
+                            :state="travellerLastNameState"
+                            aria-describedby="input-last-name-feedback"
+                            placeholder="Enter traveller last name"
+                            trim
+                        ></b-form-input>
+                        <b-form-invalid-feedback id="input-last-name-feedback">
+                          Enter at least 3 letters
+                        </b-form-invalid-feedback>
+                      </b-col>
+                    </b-row>
+                    <b-row >
+                      <b-col md="6" sm="12" class="mt-2">
+                        <label for="input-email-name">Email:</label>
+                        <b-form-input
+                            id="input-email-name"
+                            v-model="traveller_email_name"
+                            :state="travellerEmailState"
+                            aria-describedby="input-email-feedback"
+                            placeholder="Enter email"
+                            trim
+                        ></b-form-input>
+                        <b-form-invalid-feedback id="input-email-feedback">
+                          Enter at least 3 letters
+                        </b-form-invalid-feedback>
+                      </b-col>
+                      <b-col md="6" sm="12" class="mt-2">
+                        <label for="input-phone-name">Phone Number:</label>
+                        <vue-phone-number-input size="sm" v-model="traveller_phone_name" />
+                      </b-col>
+                    </b-row>
+                    <b-row class="mt-3 mb-1">
+                      <b-col cols="12">
+                        <b-form-checkbox
+                            id="save-check"
+                            v-model="save_traveller"
+                            name="save_check"
+                            value="saved"
+                            unchecked-value="not_saved"
+                        >
+                          Save this to my traveler list.
+                        </b-form-checkbox>
+                      </b-col>
+                    </b-row>
+                  </b-form>
+                </b-collapse>
+              </b-card-body>
+            </b-card>
+          </div>
+          <div class="booking-header mt-2 mb-3">
+            <b-button block variant="warning" style="color: #1c3c6b;font-weight: 600;">Continue</b-button>
+          </div>
         </b-col>
-        <b-col></b-col>
+        <b-col>
+          <b-card class="p-2">
+            <b-card-header>
+              <b-row class="justify-content-center">
+                <b-col cols="4">
+                  <b-img src="https://picsum.photos/125/125/?image=58" rounded center alt="Rounded image"></b-img>
+                </b-col>
+                <b-col>
+
+                </b-col>
+              </b-row>
+            </b-card-header>
+            <b-card-body>
+
+            </b-card-body>
+            <b-card-footer>
+
+            </b-card-footer>
+          </b-card>
+        </b-col>
       </b-row>
 
     </b-container>
@@ -74,16 +177,44 @@
 
 <script>
 import DownloadSection from "@/pages/components/DownloadSection.vue";
+import VuePhoneNumberInput from 'vue-phone-number-input';
+import 'vue-phone-number-input/dist/vue-phone-number-input.css';
 
 export default {
   name: "Booking",
   components: {
-    DownloadSection
+    DownloadSection,
+    VuePhoneNumberInput
   },
   data: () => {
     return {
+      mainProps: { blank: true, blankColor: '#777', width: 75, height: 75, class: 'm1' },
       flight_info_coll: true,
-      flight_details_coll: true
+      flight_details_coll: true,
+      flight_traveller_details: true,
+      traveller_first_name: '',
+      traveller_last_name: '',
+      traveller_phone_name: '',
+      traveller_email_name: '',
+      save_traveller: ''
+    }
+  },
+  computed: {
+    travellerFirstNameState () {
+      if (this.traveller_first_name == '') return null
+      return this.traveller_first_name.length > 2 ? true : false
+    },
+    travellerLastNameState () {
+      if (this.traveller_last_name == '') return null
+      return this.traveller_last_name.length > 2 ? true : false
+    },
+    travellerEmailState () {
+      if (this.traveller_email_name == '') return null
+      return this.traveller_email_name.length > 2 ? true : false
+    },
+    travellerPhoneState () {
+      if (this.traveller_phone_name == '') return null
+      return this.traveller_phone_name.length > 2 ? true : false
     }
   }
 }
@@ -101,10 +232,10 @@ export default {
   padding: 0rem;
 }
 .mt-25 {
-  margin-top: 12vh !important
+  margin-top: 13vh !important
 }
-.booking-flight-info h6 {
-  font-size: 1rem;
+.booking-flight-info h6, .booking-traveller-details h6 {
+  font-size: 0.88rem;
   line-height: 22px;
   font-weight: 600;
   color: #1c3c6b;
@@ -116,7 +247,7 @@ export default {
   align-items: center;
 }
 .booking-header h4 {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   line-height: 24px;
   font-weight: 600;
   color: #1c3c6b;
@@ -167,7 +298,7 @@ export default {
   margin-left: 15px;
 }
 .airplane-info .airplane-info-text span {
-  font-size: 1rem;
+  font-size: 0.85rem;
   line-height: 22px;
   font-weight: 400;
 }
@@ -184,9 +315,9 @@ export default {
 .flight-time {
   display: flex;
   justify-content: space-between;
-  margin-top: 12px;
+  margin-top: 4px;
   border-top: 1px solid #bcc9dc;
-  padding-top: 12px;
+  padding-top: 8px;
 }
 .detail-accordion .flight-booking-detail .flight-airlines-info .detail-time, .detail-accordion .flight-detail-section .flight-airlines-info .detail-time{
   justify-content: space-between;
@@ -200,14 +331,14 @@ export default {
 }
 .flight-time .end-time .time-text, .flight-time .start-time .time-text {
   color: #1c3c6b;
-  font-size: 1.2857142857rem;
+  font-size: 1rem;
   line-height: 22px;
   font-weight: 600;
 }
 .flight-time .end-time .day-text, .flight-time .end-time .destination-text, .flight-time .start-time .day-text, .flight-time .start-time .destination-text {
   display: block;
   color: #5d6974;
-  font-size: 1rem;
+  font-size: 0.75rem;
   line-height: 22px;
   font-weight: 400;
 }
