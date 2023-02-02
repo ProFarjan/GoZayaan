@@ -23,7 +23,7 @@
                   <span class="destination-text">DAC</span>
                 </div>
                 <div class="stops-info">
-                  <div class="stop-numbers"><span>Non-stop</span></div>
+                  <div class="stop-numbers"><span></span></div>
                   <div class="arrow-pointer"></div>
                 </div>
                 <div class="end-time">
@@ -60,7 +60,7 @@
                   <span class="destination-text">CXB</span>
                 </div>
                 <div class="stops-info">
-                  <div class="stop-numbers"><span>Non-stop</span></div>
+                  <div class="stop-numbers"><span></span></div>
                   <div class="arrow-pointer"></div>
                 </div>
                 <div class="end-time">

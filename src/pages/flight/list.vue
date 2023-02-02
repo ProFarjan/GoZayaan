@@ -11,17 +11,7 @@
     <div class="section section-basic" style="margin-top: .9rem;">
       <div class="container">
         <b-row>
-          <b-col>
-            <b-card>
-
-            </b-card>
-          </b-col>
-        </b-row>
-        <b-row>
           <b-col md="9" sm="12">
-            <b-card>
-
-            </b-card>
 
             <div v-if="!getSkeyleton">
               <record-skeleton v-for="n in 6" :key="n"></record-skeleton>
@@ -30,9 +20,6 @@
               <record v-for="n in 10" :key="n"></record>
             </div>
 
-            <div class="mt-3" v-if="getSkeyleton">
-              <b-pagination v-model="currentPage" :total-rows="totalRows" align="center"></b-pagination>
-            </div>
           </b-col>
           <b-col md="3" sm="12">
             <b-card class="search-result" v-if="getSkeyleton">
