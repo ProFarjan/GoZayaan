@@ -149,22 +149,98 @@
           </div>
         </b-col>
         <b-col>
-          <b-card class="p-2">
-            <b-card-header>
+          <b-card>
+            <b-card-header class="p-2" :class="flight_amt_detail ? 'collapsed' : ''" v-b-toggle.collapse-2>
               <b-row class="justify-content-center">
                 <b-col cols="4">
                   <b-img src="https://picsum.photos/125/125/?image=58" rounded center alt="Rounded image"></b-img>
                 </b-col>
                 <b-col>
-
+                  <div class="header-summary">
+                    <div class="fare-type">
+                      <img src="/img/icon-Flight.svg" alt="airplane icon" />
+                      <span>Flight</span>
+                    </div>
+                    <span class="name">
+                        DAC - CXB
+                    </span>
+                    <span class="subtitle">One Way</span>
+                  </div>
                 </b-col>
               </b-row>
             </b-card-header>
-            <b-card-body>
-
+            <b-card-body class="p-2">
+              <b-collapse id="collapse-2" v-model="flight_amt_detail" class="separator-collapse pb-2">
+                <div class="fare-info-header">
+                  Fare Summary
+                </div>
+                <div class="fare-content">
+                  <div class="fare-info-content">
+                    <div class="passenger-items">
+                      <span class="passenger-type">
+                          Adult (1 traveler)
+                      </span>
+                    </div>
+                    <div class="fare-item">
+                      <span class="fare">Base Fare</span>
+                      <span class="fare-price">
+                          <span class="sm-text">BDT</span>
+                          <span class="lg-text">
+                              4,074
+                          </span>
+                      </span>
+                    </div>
+                    <div class="fare-item">
+                      <span class="fare">Tax</span>
+                      <span class="fare-price">
+                          <span class="sm-text">BDT</span>
+                          <span class="lg-text">
+                              725
+                          </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </b-collapse>
             </b-card-body>
-            <b-card-footer>
-
+            <b-card-footer style="border-top: 1px solid #ebf0f4;" class="p-2 mt-0">
+              <div class="fare-content">
+                <div class="fare-info-content">
+                  <div class="fare-item">
+                    <span class="fare">Sub-Total</span>
+                    <span class="fare-price">
+                          <span class="sm-text">BDT</span>
+                          <span class="lg-text">
+                              4,074
+                          </span>
+                      </span>
+                  </div>
+                  <div class="fare-item">
+                    <span class="fare">Convenience Charge</span>
+                    <span class="fare-price">
+                          <span class="sm-text">BDT</span>
+                          <span class="lg-text">
+                               95
+                          </span>
+                      </span>
+                  </div>
+                </div>
+              </div>
+            </b-card-footer>
+            <b-card-footer style="background-color: #ecf3fe;" >
+              <div class="fare-content p-2">
+                <div class="fare-info-content">
+                  <div class="fare-item">
+                    <span class="fare" style="color: #1c3c6b;font-weight: 600;">You Pay (for 1 Traveler)</span>
+                    <span class="fare-price" style="color: #1c3c6b;">
+                          <span class="sm-text">BDT</span>
+                          <span class="lg-text">
+                              4,074
+                          </span>
+                      </span>
+                  </div>
+                </div>
+              </div>
             </b-card-footer>
           </b-card>
         </b-col>
@@ -196,7 +272,8 @@ export default {
       traveller_last_name: '',
       traveller_phone_name: '',
       traveller_email_name: '',
-      save_traveller: ''
+      save_traveller: '',
+      flight_amt_detail: true
     }
   },
   computed: {
@@ -372,5 +449,72 @@ export default {
 .flight-time .end-time{
   text-align: right;
   flex-basis: 30%;
+}
+.header-summary .fare-type {
+  color: #1c3c6b;
+}
+.fare-type, .subtitle {
+  display: block;
+}
+.header-summary .fare-type img{
+  width: 20px;
+  margin-right: 6px;
+}
+.header-summary .fare-type span{
+  text-transform: capitalize;
+}
+.header-summary .name {
+  font-size: 1rem;
+  line-height: 24px;
+  font-weight: 600;
+  color: #1c3c6b;
+}
+.header-summary .subtitle {
+  color: #4e5154;
+  font-size: .75rem;
+  line-height: 22px;
+  font-weight: 400;
+}
+.fare-info-header {
+  color: #1c3c6b;
+  font-size: 1rem;
+  line-height: 24px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+.fare-content .fare-info-content{
+  width: 100%;
+  flex-basis: 100%;
+  color: #636363;
+}
+.fare-content .fare-info-content .passenger-items{
+
+}
+.fare-content .fare-info-content .passenger-items{
+
+}
+.fare-item:not(:first-of-type), .fare-item:not(:first-of-type) {
+  margin-top: 5px;
+}
+.fare-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.fare-item .fare {
+  max-width: 70%;
+}
+.fare-item .fare-price {
+  max-width: 40%;
+  font-size: 1rem;
+  line-height: 24px;
+  font-weight: 600;
+}
+.fare-item .sm-text {
+  font-size: .75rem;
+  line-height: 22px;
+  font-weight: 600;
 }
 </style>
