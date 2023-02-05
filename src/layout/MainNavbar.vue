@@ -1,119 +1,27 @@
 <template>
   <navbar
     position="fixed"
-    type="primary"
     :transparent="transparent"
     :color-on-scroll="colorOnScroll"
     menu-classes="ml-auto"
+    :class="colorOnScroll==0 ? 'set_style_nav' : ''"
   >
     <template>
-      <router-link v-popover:popover1 class="navbar-brand" to="/">
-        Now Ui Kit
+      <router-link class="navbar-brand" to="/">
+        <b-img :src="$root.$data.app_logo" rounded :alt="$root.$data.app_name"></b-img>
       </router-link>
-      <el-popover
-        ref="popover1"
-        popper-class="popover"
-        placement="bottom"
-        width="200"
-        trigger="hover"
-      >
-        <div class="popover-body">
-          Designed by Invision. Coded by Creative Tim
-        </div>
-      </el-popover>
     </template>
     <template slot="navbar-menu">
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          href="https://www.creative-tim.com/product/vue-now-ui-kit"
-          target="_blank"
-        >
-          <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-          <p>Download</p>
-        </a>
-      </li>
-      <drop-down
-        tag="li"
-        title="Components"
-        icon="now-ui-icons design_app"
-        class="nav-item"
-      >
-        <nav-link to="/">
-          <i class="now-ui-icons business_chart-pie-36"></i> All components
-        </nav-link>
-        <a
-          href="https://demos.creative-tim.com/vue-now-ui-kit/documentation"
-          target="_blank"
-          class="dropdown-item"
-        >
-          <i class="now-ui-icons design_bullet-list-67"></i> Documentation
-        </a>
-      </drop-down>
-      <drop-down
-              tag="li"
-              title="Examples"
-              icon="now-ui-icons design_image"
-              class="nav-item"
-      >
-        <nav-link to="/landing">
-          <i class="now-ui-icons education_paper"></i> Landing
-        </nav-link>
-        <nav-link to="/login">
-          <i class="now-ui-icons users_circle-08"></i> Login
-        </nav-link>
-        <nav-link to="/profile">
-          <i class="now-ui-icons users_single-02"></i> Profile
-        </nav-link>
-      </drop-down>
-      <li class="nav-item">
-        <a
-          class="nav-link btn btn-neutral"
-          href="https://www.creative-tim.com/product/vue-now-ui-kit-pro"
-          target="_blank"
-        >
-          <i class="now-ui-icons arrows-1_share-66"></i>
-          <p>Upgrade to PRO</p>
+      <li class="nav-item d-inline-block text-center brand-nav" style="margin-right: 30vw;">
+        <a href="#?search=flight" class="nav-link active my_nav_a" target="_self" aria-current="page">
+          <img src="/img/icon-Flight.svg" width="30" height="20" class="" />
+          <span class="d-block my_nav_span">Flight</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a
-          class="nav-link"
-          rel="tooltip"
-          title="Follow us on Twitter"
-          data-placement="bottom"
-          href="https://twitter.com/CreativeTim"
-          target="_blank"
-        >
-          <i class="fab fa-twitter"></i>
-          <p class="d-lg-none d-xl-none">Twitter</p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          rel="tooltip"
-          title="Like us on Facebook"
-          data-placement="bottom"
-          href="https://www.facebook.com/CreativeTim"
-          target="_blank"
-        >
-          <i class="fab fa-facebook-square"></i>
-          <p class="d-lg-none d-xl-none">Facebook</p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          rel="tooltip"
-          title="Follow us on Instagram"
-          data-placement="bottom"
-          href="https://www.instagram.com/CreativeTimOfficial"
-          target="_blank"
-        >
-          <i class="fab fa-instagram"></i>
-          <p class="d-lg-none d-xl-none">Instagram</p>
+        <a class="nav-link btn btn-primary" :href="'tel:'+$root.$data.call_now" style="font-weight: 600;padding: 8px 20px;">
+          <p>Call Now</p>
         </a>
       </li>
     </template>
@@ -121,7 +29,7 @@
 </template>
 
 <script>
-import { DropDown, Navbar, NavLink } from '@/components';
+import { Navbar } from '@/components';
 import { Popover } from 'element-ui';
 export default {
   name: 'main-navbar',
@@ -130,12 +38,28 @@ export default {
     colorOnScroll: Number
   },
   components: {
-    DropDown,
     Navbar,
-    NavLink,
     [Popover.name]: Popover
   }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.set_style_nav {
+  box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 15%);
+}
+.my_nav_span {
+  font-weight: 600;
+  color: #1c3c6b;
+  font-size: 0.75rem;
+  line-height: 12px;
+}
+.my_nav_a {
+  padding: 0;
+  display: none;
+}
+.my_nav_a:hover{
+  background-color: transparent !important;
+  border-radius: 0 !important;
+}
+</style>

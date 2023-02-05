@@ -2,40 +2,15 @@
   <footer
     class="footer"
     :class="{ [`footer-${type}`]: type }"
-    :data-background-color="backgroundColor"
+    style="background-color: #1c3c6b !important;color: white !important;"
   >
     <div class="container">
-      <nav>
-        <ul>
-          <li>
-            <a href="https://www.creative-tim.com">
-              Creative Tim
-            </a>
-          </li>
-          <li>
-            <a href="https:///presentation.creative-tim.com">
-              About Us
-            </a>
-          </li>
-          <li>
-            <a href="https:///blog.creative-tim.com">
-              Blog
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="copyright">
-        &copy; {{ year }}, Designed by
-        <a href="https:///www.invisionapp.com" target="_blank" rel="noopener"
-          >Invision</a
-        >. Coded by
-        <a href="https://binarcode.com" target="_blank" rel="noopener"
-          >BinarCode</a
-        >
-        and
-        <a href="https://www.creative-tim.com" target="_blank" rel="noopener"
-          >Creative Tim</a
-        >.
+      <hr class="separator" />
+      <div class="row footer-copyright align-items-center">
+        <div class="col-md-6">
+          <b-img :src="$root.$data.app_logo_white" rounded :alt="$root.$data.app_name"></b-img>
+        </div>
+        <div class="col-md-6"><p class="text-small-regular text-right">© Copyright GoZayaan Ltd.</p></div>
       </div>
     </div>
   </footer>
@@ -53,4 +28,8 @@ export default {
   }
 };
 </script>
-<style></style>
+<style>
+hr {
+  border-top: 1px solid rgb(255 255 255) !important;
+}
+</style>
