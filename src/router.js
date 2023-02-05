@@ -40,6 +40,24 @@ export default new Router({
       }
     },
     {
+      path: '/terms',
+      name: 'terms',
+      components: { default: () => import('./pages/Terms.vue'), header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 0 },
+        footer: { backgroundColor: 'black' },
+      }
+    },
+    {
+      path: '/privacy-policy',
+      name: 'privacy_policy',
+      components: { default: () => import('./pages/PrivacyPolicy.vue'), header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 0 },
+        footer: { backgroundColor: 'black' },
+      }
+    },
+    {
       path: '/login',
       name: 'login',
       components: { default: Login, header: MainNavbar },

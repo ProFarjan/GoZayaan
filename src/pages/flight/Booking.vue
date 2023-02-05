@@ -308,9 +308,6 @@ export default {
 .card-body {
   padding: 0rem;
 }
-.mt-25 {
-  margin-top: 13vh !important
-}
 .booking-flight-info h6, .booking-traveller-details h6 {
   font-size: 0.88rem;
   line-height: 22px;

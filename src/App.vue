@@ -12,6 +12,9 @@ export default {};
 </script>
 
 <style>
+  .mt-25 {
+    margin-top: 13vh !important
+  }
   .custom-control-input:checked ~ .custom-control-label::before {
     color: #fff !important;
     border-color: #1c3c6b !important;

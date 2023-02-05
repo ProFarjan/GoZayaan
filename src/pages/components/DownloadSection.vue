@@ -13,21 +13,21 @@
               <router-link class="active-exact" to="/">Home</router-link>
             </li>
             <li class="footer-link">
-              <router-link to="/terms">Terms</router-link>
+              <router-link to="/terms">Terms & Conditions</router-link>
             </li>
             <li class="footer-link">
-              <router-link to="/talent">Talent &amp; Culture</router-link>
+              <router-link to="/privacy-policy">Privacy policy </router-link>
             </li>
           </ul>
           <ul class="footer-links">
             <li class="footer-link">
-              <router-link to="/refund-policy">Refund Policy</router-link>
+              <router-link to="/refund-policy">About Us</router-link>
             </li>
             <li class="footer-link">
-              <router-link to="/emi-policy">EMI Policy</router-link>
+              <router-link to="/emi-policy">Contact Us</router-link>
             </li>
             <li class="footer-link">
-              <router-link to="/privacy-policy">Privacy Policy</router-link>
+              <router-link to="/privacy-policy">Company Details</router-link>
             </li>
           </ul>
         </div>
