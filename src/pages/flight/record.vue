@@ -4,13 +4,14 @@
       <div class="flight-airlines-wrapper">
         <div class="airline-info-container">
           <div class="flight-airlines-info">
-            <div class="airplane-info">
+            <div class="airplane-info" v-if="trips?.Airline">
               <div class="image-placeholder">
                 <img src="https://sgp1.digitaloceanspaces.com/gz-sandbox/carrier/logo/dfcbe726-30f3-478a-a062-731fdd91d0ee.png" />
+<!--                <img :src="$root.$data.base_url('upload/'+trips?.Airline?.image)" />-->
               </div>
               <div class="airplane-info-text">
                 <span class="airplane-name">
-                    NOVOAIR
+                    {{ trips?.Airline.name }}
                 </span>
               </div>
             </div>
@@ -40,43 +41,6 @@
               </span>
             </div>
           </div>
-          <div class="flight-airlines-info">
-            <div class="airplane-info">
-              <div class="image-placeholder">
-                <img src="https://sgp1.digitaloceanspaces.com/gz-sandbox/carrier/logo/dfcbe726-30f3-478a-a062-731fdd91d0ee.png" />
-              </div>
-              <div class="airplane-info-text">
-                <span class="airplane-name">
-                    NOVOAIR
-                </span>
-              </div>
-            </div>
-            <div>
-              <div class="flight-time">
-                <div class="start-time">
-                  <span class="time-text">
-                      09:20
-                  </span>
-                  <span class="destination-text">CXB</span>
-                </div>
-                <div class="stops-info">
-                  <div class="stop-numbers"><span></span></div>
-                  <div class="arrow-pointer"></div>
-                </div>
-                <div class="end-time">
-                  <span class="time-text">
-                      10:25
-                  </span>
-                  <span class="destination-text">DAC</span>
-                </div>
-              </div>
-            </div>
-            <div class="flight-duration-text">
-              <span data-v-518b83f4="">
-                  1h 5m
-              </span>
-            </div>
-          </div>
         </div>
         <div class="price-info-wrapper">
           <div class="price-texts">
@@ -84,9 +48,9 @@
                 DOMFLY0223
             </span>
             <div>
-              <span class="actual-price">
-                  BDT 9,598
-              </span>
+<!--              <span class="actual-price">-->
+<!--                  BDT 9,598-->
+<!--              </span>-->
               <span class="discount-price">
                   BDT 9,028
               </span>
@@ -104,6 +68,11 @@
 <script>
 export default {
   name: "record",
+  props: {
+    trips: {
+      type: Object
+    }
+  },
   methods: {
     confirm_booking () {
       this.$router.push({

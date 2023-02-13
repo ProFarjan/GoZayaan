@@ -26,9 +26,9 @@
 
             <div class="box location from" :class="isActiveFrom" @click="open_from" v-click-outside="close_from">
               <span class="label">From</span>
-              <div class="value">{{ from_value.city }}</div>
+              <div class="value">{{ from_value.Location?.city }}</div>
               <span class="sub-value">
-                {{ from_value.port_short_name }}, {{ from_value.port_name }}
+                {{ from_value?.name }}, {{ from_value?.short_name }}
               </span>
               <multiselect
                   v-if="isActiveFrom"
@@ -36,18 +36,18 @@
                   v-model="from_value"
                   :options="from_options"
                   :customLabel="customLabel"
-                  track-by="port_short_name"
                   :hideSelected="true"
                   placeholder="Type to search"
+                  @search-change="getFromOptionRecords"
                   @select="select_from"
                   @close="close_from">
                 <template slot="option" slot-scope="props">
                   <div class="airport">
                     <div class="airport-location">
-                      <div class="city-country">{{ props.option.city }}, {{ props.option.country }}</div>
-                      <div class="airport-name">{{ props.option.port_name }}</div>
+                      <div class="city-country">{{ props.option?.Location?.city }}, {{ props.option?.Location?.country }}</div>
+                      <div class="airport-name">{{ props.option.name }}</div>
                     </div>
-                    <div class="code">{{ props.option.port_short_name }}</div>
+                    <div class="code">{{ props.option.short_name }}</div>
                   </div>
                 </template>
               </multiselect>
@@ -56,10 +56,10 @@
               <span class="swapper"></span>
               <span class="label">To</span>
               <div class="value">
-                {{ to_value.city }}
+                {{ to_value?.Location?.city }}
               </div>
               <span class="sub-value">
-                {{ to_value.port_short_name }}, {{ to_value.port_name }}
+                {{ to_value?.name }}, {{ to_value?.short_name }}
               </span>
               <multiselect
                   v-if="isActiveTo"
@@ -68,17 +68,17 @@
                   :options="to_options"
                   :hideSelected="true"
                   :customLabel="customLabel"
-                  track-by="port_short_name"
                   placeholder="Type to search"
                   @select="select_to"
-                  @close="close_to">
+                  @close="close_to"
+                  @search-change="getFromOptionRecords">
                 <template slot="option" slot-scope="props">
                   <div class="airport">
                     <div class="airport-location">
-                      <div class="city-country">{{ props.option.city }}, {{ props.option.country }}</div>
-                      <div class="airport-name">{{ props.option.port_name }}</div>
+                      <div class="city-country">{{ props.option?.Location?.city }}, {{ props.option?.Location?.country }}</div>
+                      <div class="airport-name">{{ props.option?.name }}</div>
                     </div>
-                    <div class="code">{{ props.option.port_short_name }}</div>
+                    <div class="code">{{ props.option?.short_name }}</div>
                   </div>
                 </template>
               </multiselect>
@@ -241,44 +241,40 @@ export default {
     flightSearch: {
       type: Boolean,
       default: false
-    }
+    },
+    adult: {
+      type: Number,
+      default: 1
+    },
+    children: {
+      type: Number,
+      default: 0
+    },
+    child_age: {
+      type: Array,
+      default: null
+    },
+    infant: {
+      type: Number,
+      default: 0
+    },
+    class_type: {
+      type: String,
+      default: "Economy"
+    },
+    trips: {
+      type: Object,
+      default: null
+    },
   },
   data: () => {
     return {
-      adult: 1,
-      children: 0,
-      children_age: [],
-      infant: 0,
       children_list: [2,3,4,5,6,7,8,9,10,11],
       class_list: ['Economy','Business'],
-      class_type: 'Economy',
-      from_value: {
-        city: 'Dhaka 01',
-        country: 'Bangladesh',
-        port_name: 'Hazrat Shahjalal International Airport',
-        port_short_name: 'DAC 1'
-      },
-      from_options: [
-        {city: 'Dhaka 01', country: 'Bangladesh', port_name: '01 Hazrat Shahjalal International Airport', port_short_name: 'DAC 1'},
-        {city: 'Dhaka 02', country: 'Bangladesh', port_name: '02 Hazrat Shahjalal International Airport', port_short_name: 'DAC 2'},
-        {city: 'Dhaka 03', country: 'Bangladesh', port_name: '03 Hazrat Shahjalal International Airport', port_short_name: 'DAC 3'},
-        {city: 'Dhaka 03', country: 'Bangladesh', port_name: '03 Hazrat Shahjalal International Airport', port_short_name: 'DAC 3'},
-        {city: 'Dhaka 03', country: 'Bangladesh', port_name: '03 Hazrat Shahjalal International Airport', port_short_name: 'DAC 3'},
-        {city: 'Dhaka 03', country: 'Bangladesh', port_name: '03 Hazrat Shahjalal International Airport', port_short_name: 'DAC 3'},
-        {city: 'Dhaka 04', country: 'Bangladesh', port_name: '04 Hazrat Shahjalal International Airport', port_short_name: 'DAC 4'}
-      ],
-      to_value: {
-        city: 'Dhaka 01',
-        country: 'Bangladesh',
-        port_name: 'Hazrat Shahjalal International Airport',
-        port_short_name: 'DAC 1'
-      },
-      to_options: [
-        {city: 'Dhaka 01', country: 'Bangladesh', port_name: '01 Hazrat Shahjalal International Airport', port_short_name: 'DAC 1'},
-        {city: 'Dhaka 02', country: 'Bangladesh', port_name: '02 Hazrat Shahjalal International Airport', port_short_name: 'DAC 2'},
-        {city: 'Dhaka 03', country: 'Bangladesh', port_name: '03 Hazrat Shahjalal International Airport', port_short_name: 'DAC 3'},
-        {city: 'Dhaka 04', country: 'Bangladesh', port_name: '04 Hazrat Shahjalal International Airport', port_short_name: 'DAC 4'}
-      ],
+      from_value: {},
+      from_options: [],
+      to_value: {},
+      to_options: [],
       way_selected: 'one_way',
       way_list: [
         { text: 'One Way', value: 'one_way' },
@@ -337,19 +333,47 @@ export default {
       if (this.return_date.length == 2) {
         this.journey_to = this.return_date[0]
       }
+    },
+    trips () {
+      if (this.trips != null) {
+        this.from_value = this.trips?.from
+        this.to_value = this.trips?.to
+      }
     }
   },
   methods: {
+    getFromOptionRecords (query) {
+      const filter = {}
+      if (query.length > 1) {
+        filter.location_name = query
+        filter.name = query
+        filter.short_name = query
+      }
+      this.axios.get('airport-search', {
+        params: {
+          status: 1,
+          ...filter
+        }
+      }).then(res => {
+        if (res.data?.status) {
+          this.from_options = res.data.data.airports
+          this.to_options = res.data.data.airports
+        }
+      })
+    },
     search_flight () {
       this.$router.push({
         path: '/flight/list',
-        params: {
+        query: {
           adult: this.adult,
-          child: this.children,
-          child_age: 0,
+          children: this.children,
+          child_age: [],
           infant: this.infant,
-          cabin_class: this.class_type,
-          trips: this.journey_to,
+          class_type: this.class_type,
+          trips: JSON.stringify({
+            from: this.from_value,
+            to: this.to_value
+          }),
         }
       })
     },
@@ -443,6 +467,9 @@ export default {
       this.way_selected = 'one_way'
       this.$refs.journeyreturn.closePopup()
     }
+  },
+  mounted() {
+    this.getFromOptionRecords('')
   }
 }
 </script>

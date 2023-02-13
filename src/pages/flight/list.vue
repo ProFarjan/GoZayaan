@@ -3,7 +3,15 @@
     <div class="section" style="background-color: #FFFFFF;">
       <div class="container">
         <div class="content-center margin_top_list">
-          <flight-search :flight-search="true"></flight-search>
+          <flight-search
+              :flight-search="true"
+              :trips="searchFlight.trips"
+              :adult="searchFlight.adult"
+              :children="searchFlight.children"
+              :child_age="searchFlight.child_age"
+              :class_type="searchFlight.class_type"
+              :infant="searchFlight.infant">
+          </flight-search>
         </div>
       </div>
     </div>
@@ -17,14 +25,19 @@
               <record-skeleton v-for="n in 6" :key="n"></record-skeleton>
             </div>
             <div v-else>
-              <record v-for="n in 10" :key="n"></record>
+              <span v-if="trips.length">
+                <record v-for="(trip, n) in trips" :key="n" :trips="trip"></record>
+              </span>
+              <span v-else>
+                No Data Found
+              </span>
             </div>
 
           </b-col>
           <b-col md="3" sm="12">
             <b-card class="search-result" v-if="getSkeyleton">
               <h6>Search Complete</h6>
-              <p style="margin: 0;">Showing 151 results</p>
+              <p style="margin: 0;">Showing {{ totalRows }} results</p>
             </b-card>
             <b-card>
               <b-list-group>
@@ -70,9 +83,18 @@ export default {
         email: '',
         message: ''
       },
-      totalRows: 100,
-      currentPage: 2,
-      stop_skeleton: false
+      totalRows: 0,
+      currentPage: 1,
+      stop_skeleton: false,
+      searchFlight: {
+        adult: 1,
+        children: 0,
+        child_age: null,
+        infant: 0,
+        class_type: 'Economy',
+        trips: null,
+      },
+      trips: null
     }
   },
   computed: {
@@ -86,7 +108,39 @@ export default {
     }
   },
   mounted() {
-    setTimeout(this.stopSkeleton, 3000)
+    const filter = {};
+    let query = this.$route.query
+    if (query.hasOwnProperty('trips')) {
+      try {
+        this.searchFlight.trips = JSON.parse(query.trips)
+        if (this.searchFlight.trips?.from) filter.journey_from = this.searchFlight.trips?.from?.id
+        if (this.searchFlight.trips?.to) filter.journey_to = this.searchFlight.trips?.to?.id
+      } catch (e) {}
+    }
+    if (query.hasOwnProperty('adult')) this.searchFlight.adult = parseInt(query.adult)
+    if (query.hasOwnProperty('children')) this.searchFlight.children = parseInt(query.children)
+    if (query.hasOwnProperty('child_age')) this.searchFlight.child_age = query.child_age
+    if (query.hasOwnProperty('infant')) this.searchFlight.infant = parseInt(query.infant)
+    if (query.hasOwnProperty('class_type')) this.searchFlight.class_type = query.class_type
+    console.log(filter)
+    this.axios.get('trip-search', {
+      params: {
+        status: 1,
+        ...filter
+      }
+    }).then(res => {
+      if (res.data?.status) {
+        this.totalRows = res.data?.data.length
+        this.trips = res.data?.data?.trip
+        setTimeout(this.stopSkeleton, 1000)
+      } else {
+        setTimeout(this.stopSkeleton, 3000)
+      }
+    }).catch(e => {
+      console.log(e)
+      setTimeout(this.stopSkeleton, 3000)
+    })
+
   }
 };
 </script>

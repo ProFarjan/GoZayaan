@@ -20,10 +20,14 @@ import App from './App.vue';
 import router from './router';
 import NowUiKit from './plugins/now-ui-kit';
 import Global_Mixins from './mixins/global';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 
 Vue.config.productionTip = false;
+axios.defaults.baseURL = 'http://localhost:3005/api/v1/'; // this.base_url();
 
 Vue.use(NowUiKit);
+Vue.use(VueAxios, axios)
 
 new Vue({
   mixins: [Global_Mixins],

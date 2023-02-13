@@ -12,5 +12,10 @@ export default {
             messenger: 'm.me/GoZayaanBD',
             whappsapp: '+447475842121'
         }
+    },
+    methods: {
+        base_url (path) {
+            return 'http://localhost:3005/api/v1/' + path
+        }
     }
 }
