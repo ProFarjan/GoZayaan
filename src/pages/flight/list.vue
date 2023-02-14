@@ -122,7 +122,6 @@ export default {
     if (query.hasOwnProperty('child_age')) this.searchFlight.child_age = query.child_age
     if (query.hasOwnProperty('infant')) this.searchFlight.infant = parseInt(query.infant)
     if (query.hasOwnProperty('class_type')) this.searchFlight.class_type = query.class_type
-    console.log(filter)
     this.axios.get('trip-search', {
       params: {
         status: 1,
@@ -137,7 +136,6 @@ export default {
         setTimeout(this.stopSkeleton, 3000)
       }
     }).catch(e => {
-      console.log(e)
       setTimeout(this.stopSkeleton, 3000)
     })
 
