@@ -1,68 +1,75 @@
 <template>
-  <b-card>
-    <div class="flight-card">
-      <div class="flight-airlines-wrapper">
-        <div class="airline-info-container">
-          <div class="flight-airlines-info">
-            <div class="airplane-info" v-if="trips?.Airline">
-              <div class="image-placeholder">
-                <img src="https://sgp1.digitaloceanspaces.com/gz-sandbox/carrier/logo/dfcbe726-30f3-478a-a062-731fdd91d0ee.png" />
-<!--                <img :src="$root.$data.base_url('upload/'+trips?.Airline?.image)" />-->
+  <div>
+    <span v-for="(trip_schedule, ns) in trips?.TripSchedules" :key="ns">
+      <span v-for="(trip_ticket, nt) in trips?.TripTickets" :key="nt">
+        <b-card>
+          <div class="flight-card">
+            <div class="flight-airlines-wrapper">
+              <div class="airline-info-container">
+                <div class="flight-airlines-info">
+                  <div class="airplane-info" v-if="trips?.Airline">
+                    <div class="image-placeholder">
+                      <img src="https://sgp1.digitaloceanspaces.com/gz-sandbox/carrier/logo/dfcbe726-30f3-478a-a062-731fdd91d0ee.png" />
+                      <!--                <img :src="$root.$data.base_url('upload/'+trips?.Airline?.image)" />-->
+                    </div>
+                    <div class="airplane-info-text">
+                      <span class="airplane-name">
+                          {{ trips?.Airline.name }}
+                      </span>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flight-time">
+                      <div class="start-time">
+                        <span class="time-text">
+                          {{ trip_schedule?.journey_time }}
+                        </span>
+                        <span class="destination-text">{{ trips?.journey_from_info?.short_name }}</span>
+                      </div>
+                      <div class="stops-info">
+                        <div class="stop-numbers"><span></span></div>
+                        <div class="arrow-pointer"></div>
+                      </div>
+                      <div class="end-time">
+                        <span class="time-text">
+                            {{ trip_schedule?.departure_time }}
+                        </span>
+                        <span class="destination-text">{{ trips?.journey_to_info?.short_name }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flight-duration-text">
+                    <span>
+                        1h 5m
+                    </span>
+                  </div>
+                </div>
               </div>
-              <div class="airplane-info-text">
-                <span class="airplane-name">
-                    {{ trips?.Airline.name }}
-                </span>
-              </div>
-            </div>
-            <div>
-              <div class="flight-time">
-                <div class="start-time">
-                  <span class="time-text">
-                    16:30
+              <div class="price-info-wrapper">
+                <div class="price-texts">
+                  <span class="discount-info">
+                      DOMFLY0223
                   </span>
-                  <span class="destination-text">DAC</span>
+                  <div>
+      <!--              <span class="actual-price">-->
+                    <!--                  BDT 9,598-->
+                    <!--              </span>-->
+                    <span class="discount-price">
+                        BDT 9,028
+                    </span>
+                  </div>
                 </div>
-                <div class="stops-info">
-                  <div class="stop-numbers"><span></span></div>
-                  <div class="arrow-pointer"></div>
-                </div>
-                <div class="end-time">
-                  <span class="time-text">
-                      17:35
-                  </span>
-                  <span class="destination-text">CXB</span>
-                </div>
+                <button type="button" class="btn selection-btn btn-block btn-secondary btn-sm btn_select" @click="confirm_booking">
+                  Select
+                </button>
               </div>
-            </div>
-            <div class="flight-duration-text">
-              <span>
-                  1h 5m
-              </span>
             </div>
           </div>
-        </div>
-        <div class="price-info-wrapper">
-          <div class="price-texts">
-            <span class="discount-info">
-                DOMFLY0223
-            </span>
-            <div>
-<!--              <span class="actual-price">-->
-<!--                  BDT 9,598-->
-<!--              </span>-->
-              <span class="discount-price">
-                  BDT 9,028
-              </span>
-            </div>
-          </div>
-          <button type="button" class="btn selection-btn btn-block btn-secondary btn-sm btn_select" @click="confirm_booking">
-            Select
-          </button>
-        </div>
-      </div>
-    </div>
-  </b-card>
+        </b-card>
+      </span>
+    </span>
+  </div>
+
 </template>
 
 <script>

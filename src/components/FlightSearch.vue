@@ -208,11 +208,11 @@
               </div>
             </div>
 
-<!--            <div class="modify_search" v-if="flightSearch">-->
-<!--              <button type="button" class="search-btn" @click="search_flight">-->
-<!--                Modify Search-->
-<!--              </button>-->
-<!--            </div>-->
+            <div class="modify_search" v-if="flightSearch">
+              <button type="button" class="search-btn" @click="search_flight">
+                Modify Search
+              </button>
+            </div>
           </div>
 
           <div class="search-btn-container" v-if="!flightSearch">
